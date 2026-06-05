@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jamie Kirumato | Film & MV Mechanic Critic</title>
+    <meta name="description" content="Website cá nhân của Jamie Kirumato - Reviewer tự do chuyên đánh giá các tác phẩm MV âm nhạc và phim ảnh mới nhất với phong cách cơ khí, nghệ thuật độc đáo.">
+    <!-- Google Fonts: Syne (Artistic & Bold), Cinzel Decorative (Artistic Title), Plus Jakarta Sans (Modern & Clean Body) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Syne:wght@700;800&family=Orbitron:wght@500;700;900&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Main Style Sheet -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="tech-grid-bg">
+
+    <!-- Thin Top Reading Progress Bar -->
+    <div class="reading-progress-bar" id="reading-progress"></div>
+
+    <!-- Interactive Particle Trail Canvas -->
+    <canvas id="particle-canvas"></canvas>
+
+    <!-- Quiz Fireworks Canvas Overlay -->
+    <canvas id="quiz-fireworks-canvas" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 9999;"></canvas>
+
+    <!-- Custom Target Cursor HUD (SVGs loaded dynamically inside ring) -->
+    <div class="custom-cursor-dot" id="cursor-dot"></div>
+    <div class="custom-cursor-ring" id="cursor-ring"></div>
+
+    <!-- Floating Color Nebula Blobs (Artistic & Dynamic) -->
+    <div class="floating-blobs-container">
+        <div class="floating-blob blob-1"></div>
+        <div class="floating-blob blob-2"></div>
+        <div class="floating-blob blob-3"></div>
+    </div>
+
+    <!-- HUD Screen Corners & Grid Ornaments -->
+    <div class="hud-corners">
+        <div class="hud-corner top-left"></div>
+        <div class="hud-corner top-right"></div>
+        <div class="hud-corner bottom-left"></div>
+        <div class="hud-corner bottom-right"></div>
+    </div>
+    
+    <!-- Glowing Background Gradients (Accent Overlays) -->
+    <div class="bg-glow bg-glow-1"></div>
+    <div class="bg-glow bg-glow-2"></div>
+    <div class="bg-glow bg-glow-3"></div>
+
+    <!-- Navigation Header -->
+    <header class="header">
+        <div class="header-container">
+            <a href="#" class="logo-brand" id="nav-logo">
+                <i class="fa-solid fa-crosshairs logo-icon-gear"></i> <span class="logo-accent">J</span>AMIE<span class="logo-dot">.</span>K
+            </a>
+            
+            <div class="header-right-actions">
+                <!-- Retro Sound Equalizer Mute/Play Button -->
+                <button class="music-toggle-btn" id="music-toggle" aria-label="Bật/Tắt nhạc nền" title="Bật nhạc nền Ambient">
+                    <div class="eq-bar eq-bar-1"></div>
+                    <div class="eq-bar eq-bar-2"></div>
+                    <div class="eq-bar eq-bar-3"></div>
+                    <div class="eq-bar eq-bar-4"></div>
+                </button>
+
+                <!-- Fluid Light/Dark Theme Toggle Switch -->
+                <div class="theme-toggle-wrapper">
+                    <button class="theme-toggle-btn" id="theme-toggle" aria-label="Đổi giao diện Sáng/Tối">
+                        <div class="toggle-track">
+                            <div class="toggle-thumb">
+                                <div class="thumb-icon sun-icon"><i class="fa-solid fa-sun"></i></div>
+                                <div class="thumb-icon moon-icon"><i class="fa-solid fa-moon"></i></div>
+                            </div>
+                            <div class="toggle-stars">
+                                <span class="star-sparkle"></span>
+                                <span class="star-sparkle"></span>
+                                <span class="star-sparkle"></span>
+                            </div>
+                        </div>
+                    </button>
+                </div>
+                
+                <button class="mobile-nav-toggle" aria-label="Toggle menu" id="mobile-toggle">
+                    <i class="fa-solid fa-bars-staggered"></i>
+                </button>
+            </div>
+
+            <nav class="nav-menu" id="nav-menu">
+                <a href="#about" class="nav-link active"><i class="fa-solid fa-circle-nodes nav-icon"></i> Giới Thiệu</a>
+                <a href="#charts" class="nav-link"><i class="fa-solid fa-chart-bar nav-icon"></i> Bảng Xếp Hạng</a>
+                <a href="#reviews" class="nav-link"><i class="fa-solid fa-video nav-icon"></i> Đánh Giá</a>
+                <a href="#contact" class="nav-link"><i class="fa-solid fa-wrench nav-icon"></i> Liên Hệ</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main-content">
+        
+        <!-- Hero / About Section -->
+        <section id="about" class="section hero-section">
+            <div class="container hero-container">
+                <div class="hero-image-wrapper scroll-reveal reveal-left">
+                    <!-- Tech frame for image -->
+                    <div class="avatar-tech-frame tech-card">
+                        <div class="viewfinder-lens"></div>
+                        <img src="assets/jamie_avatar.png" alt="Jamie Kirumato Avatar" class="avatar-img" id="avatar-image">
+                        <div class="tech-line-scanner"></div>
+                        <div class="tech-badge-online"><span class="pulse-dot"></span> CRITIC ACTIVE</div>
+                    </div>
+                </div>
+                <div class="hero-info scroll-reveal reveal-right">
+                    <div class="badge-tag"><i class="fa-solid fa-gears gear-icon"></i> MECHANICAL REVIEW UNIT</div>
+                    <h1 class="hero-title">JAMIE KIRUMATO</h1>
+                    <h2 class="hero-subtitle">[ ANALYZING THE ART BEHIND THE CAMERA ]</h2>
+                    <p class="hero-desc">
+                        Chào mừng độc giả tới trạm phân tích của Jamie Kirumato. Là một reviewer tự do hoạt động độc lập, mình vận hành trang web này như một “cỗ máy giải mã nghệ thuật” - mổ xẻ từng chi tiết cơ khí của khung hình, bố cục ánh sáng cinematic, tần số âm thanh và ý đồ biên kịch trong các MV nhạc & tác phẩm điện ảnh nóng hổi nhất.
+                    </p>
+                    
+                    <!-- Stats represented as mechanical specs -->
+                    <div class="hero-stats tech-panel">
+                        <div class="stat-item">
+                            <span class="stat-num" id="stat-mvs"><i class="fa-solid fa-compact-disc gear-icon"></i> 150+</span>
+                            <span class="stat-label">MV ÂM NHẠC</span>
+                        </div>
+                        <div class="stat-divider"></div>
+                        <div class="stat-item">
+                            <span class="stat-num" id="stat-movies"><i class="fa-solid fa-film"></i> 120+</span>
+                            <span class="stat-label">PHIM ĐIỆN ẢNH</span>
+                        </div>
+                        <div class="stat-divider"></div>
+                        <div class="stat-item">
+                            <span class="stat-num"><i class="fa-solid fa-bolt"></i> 9.8</span>
+                            <span class="stat-label">HIỆU NĂNG TÍCH CỰC</span>
+                        </div>
+                    </div>
+
+                    <!-- Critic Achievements & Badges Panel -->
+                    <div class="critic-dashboard tech-panel scroll-reveal reveal-up">
+                        <div class="dashboard-header">
+                            <span class="panel-title"><i class="fa-solid fa-id-card-clip"></i> BẢNG ĐIỀU KHIỂN CRITIC</span>
+                            <span class="xp-display"><strong id="critic-xp">0</strong> XP</span>
+                        </div>
+                        <div class="critic-rank-row">
+                            <span>Cấp bậc: <strong id="critic-rank" class="t-accent">TÂN BINH CRITIC</strong></span>
+                        </div>
+                        <!-- XP Progress Bar -->
+                        <div class="xp-bar-wrapper" title="Tiến độ XP đến cấp tiếp theo">
+                            <div class="xp-bar-fill" id="xp-progress-bar"></div>
+                        </div>
+                        <div class="badges-row">
+                            <div class="badge-item locked" id="badge-hawkeye">
+                                <i class="fa-solid fa-eye"></i>
+                                <span class="badge-tooltip">Mắt Diều Hâu (Đọc 3 Review)</span>
+                            </div>
+                            <div class="badge-item locked" id="badge-luckystar">
+                                <i class="fa-solid fa-clover"></i>
+                                <span class="badge-tooltip">Sao May Mắn (Quay thưởng)</span>
+                            </div>
+                            <div class="badge-item locked" id="badge-cinemasage">
+                                <i class="fa-solid fa-brain"></i>
+                                <span class="badge-tooltip">Nhà Thông Thái (Giải Đố)</span>
+                            </div>
+                            <div class="badge-item locked" id="badge-networker">
+                                <i class="fa-solid fa-satellite-dish"></i>
+                                <span class="badge-tooltip">Người Kết Nối (Gửi Liên Hệ)</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    
+                    <div class="hero-actions" style="margin-top: 24px;">
+                        <a href="#reviews" class="btn btn-tech"><i class="fa-solid fa-play"></i> BẮT ĐẦU QUÉT FILE</a>
+                        <a href="#contact" class="btn btn-tech-secondary"><i class="fa-solid fa-paper-plane"></i> KẾT NỐI COLLAB</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Weekly Ranking Charts Section -->
+        <section id="charts" class="section charts-section">
+            <div class="container">
+                <div class="section-header scroll-reveal">
+                    <h2 class="section-title"><i class="fa-solid fa-sliders"></i> BẢNG XẾP HẠNG TUẦN</h2>
+                    <p class="section-subtitle">[ Thước đo cơ học đánh giá mức độ hấp dẫn của các tác phẩm mới ]</p>
+                    <div class="chart-tabs tech-panel">
+                        <button class="tab-btn active" data-tab="music-chart" id="tab-music">
+                            <i class="fa-solid fa-compact-disc gear-icon"></i> PHÂN KHÚC MV
+                        </button>
+                        <button class="tab-btn" data-tab="movie-chart" id="tab-movies">
+                            <i class="fa-solid fa-clapperboard"></i> PHÂN KHÚC PHIM
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Music Video Chart -->
+                <div class="chart-content scroll-reveal" id="music-chart">
+                    <div class="chart-list" id="music-chart-list">
+                        <!-- Filled by JS -->
+                    </div>
+                </div>
+
+                <!-- Movie Chart -->
+                <div class="chart-content" id="movie-chart">
+                    <div class="chart-list" id="movie-chart-list">
+                        <!-- Filled by JS -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Reviews Grid Section -->
+        <section id="reviews" class="section reviews-section">
+            <div class="container">
+                <div class="section-header scroll-reveal">
+                    <h2 class="section-title"><i class="fa-solid fa-microchip"></i> TRẠM QUÉT ĐÁNH GIÁ</h2>
+                    <p class="section-subtitle">[ Tìm kiếm bài viết phân tích kỹ thuật số chuyên sâu ]</p>
+                    
+                    <div class="filter-bar tech-panel">
+                        <div class="search-box">
+                            <i class="fa-solid fa-terminal search-icon"></i>
+                            <input type="text" id="search-input" placeholder="Nhập từ khóa tìm kiếm [Title, Artist]...">
+                        </div>
+                        <div class="filter-tags">
+                            <button class="filter-btn active" data-filter="all">TẤT CẢ FILE</button>
+                            <button class="filter-btn" data-filter="mv"><i class="fa-solid fa-compact-disc"></i> MV NHẠC</button>
+                            <button class="filter-btn" data-filter="movie"><i class="fa-solid fa-film"></i> PHIM ẢNH</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Reviews Section Layout: main content + sticky sidebar -->
+                <div class="reviews-section-layout">
+                    <div class="reviews-main-content">
+                        <div class="reviews-grid scroll-reveal" id="reviews-container">
+                            <!-- Filled by JS -->
+                        </div>
+                    </div>
+                    <aside class="top-ranking-sidebar scroll-reveal" id="top-ranking-sidebar">
+                        <div class="sidebar-panel tech-panel">
+                            <h3 class="sidebar-title"><i class="fa-solid fa-ranking-star"></i> TOP PHIM/MV HOT</h3>
+                            <div class="sidebar-ranking-list" id="sidebar-ranking-list">
+                                <!-- Filled by JS -->
+                            </div>
+                        </div>
+                    </aside>
+                </div>
+
+                <!-- Cinematic Interactive Quiz Widget -->
+                <div class="quiz-container tech-panel scroll-reveal reveal-up" id="quiz-section-anchor" style="margin-top: 80px; position: relative;">
+                    <h3 class="quiz-title"><i class="fa-solid fa-puzzle-piece"></i> BÀI TEST: HÔM NAY BẠN NÊN XEM GÌ?</h3>
+                    <p class="quiz-subtitle">[ Khám phá bộ phim hoặc MV ca nhạc sinh ra để dành cho tâm trạng của bạn lúc này ]</p>
+                    
+                    <div class="quiz-card" id="quiz-card-content">
+                        <!-- Dynamic 10-step quiz generated by JS -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="section contact-section">
+            <div class="container">
+                <div class="section-header scroll-reveal">
+                    <h2 class="section-title"><i class="fa-solid fa-wrench"></i> KHU VỰC LIÊN HỆ</h2>
+                    <p class="section-subtitle">[ Truyền tín hiệu hợp tác trực tiếp đến Jamie Kirumato ]</p>
+                </div>
+                
+                <div class="contact-wrapper scroll-reveal">
+                    <!-- Contact Form Card -->
+                    <div class="contact-card form-card tech-card">
+                        <h3 class="card-title"><i class="fa-solid fa-bolt"></i> GỬI LỆNH TRUYỀN TIN</h3>
+                        <form id="contact-form" class="contact-form">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="contact-name">> HỌ VÀ TÊN</label>
+                                    <input type="text" id="contact-name" name="name" required placeholder="Nhập tên...">
+                                </div>
+                                <div class="form-group">
+                                    <label for="contact-email">> EMAIL NGUỒN</label>
+                                    <input type="email" id="contact-email" name="email" required placeholder="name@domain.com">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="contact-role">> ĐỐI TƯỢNG KẾT NỐI</label>
+                                <select id="contact-role" name="role" required>
+                                    <option value="" disabled selected>Chọn danh mục kết nối...</option>
+                                    <option value="singer">Nghệ Sĩ / Ca Sĩ</option>
+                                    <option value="director">Đạo Diễn / Biên Kịch</option>
+                                    <option value="producer">Nhà Sản Xuất Phim</option>
+                                    <option value="audience">Khán Giả / Fan Hâm Mộ</option>
+                                    <option value="other">Hợp tác quảng cáo / Khác</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="contact-message">> NỘI DUNG TÍN HIỆU</label>
+                                <textarea id="contact-message" name="message" rows="5" required placeholder="Nhập thông điệp cần truyền tải..."></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-tech btn-submit" id="submit-btn">
+                                <span>GỬI YÊU CẦU TRUYỀN TIN</span> <i class="fa-solid fa-paper-plane"></i>
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- Contact Details & Terminal Output Log -->
+                    <div class="contact-card info-card tech-card">
+                        <div class="info-details">
+                            <h3 class="card-title"><i class="fa-solid fa-tower-broadcast"></i> THÀNH PHẦN KẾT NỐI</h3>
+                            <ul class="info-list">
+                                <li>
+                                    <div class="info-icon"><i class="fa-regular fa-envelope"></i></div>
+                                    <div class="info-text">
+                                        <span class="info-label">ĐỊA CHỈ HÒA MẠNG</span>
+                                        <span class="info-val">jamie.kirumato.review@gmail.com</span>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="info-icon"><i class="fa-solid fa-link"></i></div>
+                                    <div class="info-text">
+                                        <span class="info-label">LIÊN KẾT MẠNG XÃ HỘI</span>
+                                        <div class="info-socials">
+                                            <a href="#" class="social-link" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
+                                            <a href="#" class="social-link" title="Facebook"><i class="fa-brands fa-facebook"></i></a>
+                                            <a href="#" class="social-link" title="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+                                            <a href="#" class="social-link" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <!-- Stylized Cyber Terminal Log -->
+                        <div class="terminal-log-wrapper">
+                            <div class="terminal-header">
+                                <span class="terminal-dot red"></span>
+                                <span class="terminal-dot yellow"></span>
+                                <span class="terminal-dot green"></span>
+                                <span class="terminal-title">critic_os_console.log</span>
+                            </div>
+                            <div class="terminal-body" id="terminal-body">
+                                <div class="terminal-line"><span class="t-accent">critic-os:~$</span> finger jamie_kirumato</div>
+                                <div class="terminal-line"><span class="t-success">[CRITIC]</span> Tên: Jamie Kirumato</div>
+                                <div class="terminal-line"><span class="t-success">[VIBE]</span> Độc lập, sắc bén, Retro-Futurism</div>
+                                <div class="terminal-line"><span class="t-success">[LĨNH VỰC]</span> Review Phim & Music Video</div>
+                                <div class="terminal-line"><span class="t-success">[CẤP BẬC]</span> Mechanical Critic Max [Lvl 99]</div>
+                                <div class="terminal-line"><span class="t-warning">[TRẠNG THÁI]</span> Đang giải mã tín hiệu điện ảnh...</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Review Details Modal -->
+    <div class="modal-overlay" id="review-modal">
+        <div class="modal-card tech-card">
+            <!-- HUD ornaments inside modal -->
+            <div class="hud-corners" style="position: absolute; pointer-events: none; z-index: 5;">
+                <div class="hud-corner top-left" style="top: 15px; left: 15px;"></div>
+                <div class="hud-corner top-right" style="top: 15px; right: 15px;"></div>
+                <div class="hud-corner bottom-left" style="bottom: 15px; left: 15px;"></div>
+                <div class="hud-corner bottom-right" style="bottom: 15px; right: 15px;"></div>
+            </div>
+            
+            <button class="modal-close" id="modal-close-btn" aria-label="Close details">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="modal-body-content" id="modal-content-area">
+                <!-- Filled dynamically by JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Gamified Exit-Intent / Scroll-Triggered Lucky Wheel Modal -->
+    <div class="modal-overlay" id="lucky-modal">
+        <div class="modal-card tech-card lucky-card">
+            <!-- HUD ornaments inside modal -->
+            <div class="hud-corners" style="position: absolute; pointer-events: none; z-index: 5;">
+                <div class="hud-corner top-left" style="top: 15px; left: 15px;"></div>
+                <div class="hud-corner top-right" style="top: 15px; right: 15px;"></div>
+                <div class="hud-corner bottom-left" style="bottom: 15px; left: 15px;"></div>
+                <div class="hud-corner bottom-right" style="bottom: 15px; right: 15px;"></div>
+            </div>
+            
+            <button class="modal-close" id="lucky-close-btn" aria-label="Đóng bảng quay">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            
+            <div class="lucky-modal-body">
+                <h3 class="lucky-title"><i class="fa-solid fa-dharmachakra gear-icon"></i> VÒNG QUAY MAY MẮN</h3>
+                <p class="lucky-desc">Quay thưởng để nhận các đặc quyền điện ảnh từ Jamie và mở khóa +100 XP cùng Huy hiệu May Mắn!</p>
+                
+                <div class="wheel-outer-wrapper">
+                    <div class="wheel-pointer"><i class="fa-solid fa-play"></i></div>
+                    <div class="wheel-element" id="wheel-element">
+                        <!-- Slices generated dynamically on canvas or CSS -->
+                        <canvas id="wheel-canvas" width="280" height="280"></canvas>
+                    </div>
+                </div>
+                
+                <div class="lucky-actions">
+                    <button class="btn-tech" id="spin-btn">KÍCH HOẠT VÒNG XOAY</button>
+                </div>
+                <div class="lucky-result" id="lucky-result-text">Bấm nút để quay thưởng! (Giới hạn: 1 lượt quay)</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating Lucky FAB (Fast Access Button) in corner -->
+    <button class="lucky-fab-btn" id="lucky-fab" title="Mở Vòng Quay May Mắn">
+        <i class="fa-solid fa-dharmachakra"></i>
+        <span class="fab-pulse"></span>
+    </button>
+
+    <!-- Toast Notification for Alerts -->
+    <div class="toast-notification" id="toast-container"></div>
+
+    <!-- Trailer Lightbox Modal -->
+    <div class="modal-overlay" id="trailer-modal">
+        <div class="modal-card tech-card trailer-modal-card">
+            <div class="hud-corners" style="position: absolute; pointer-events: none; z-index: 5;">
+                <div class="hud-corner top-left" style="top: 15px; left: 15px;"></div>
+                <div class="hud-corner top-right" style="top: 15px; right: 15px;"></div>
+                <div class="hud-corner bottom-left" style="bottom: 15px; left: 15px;"></div>
+                <div class="hud-corner bottom-right" style="bottom: 15px; right: 15px;"></div>
+            </div>
+            
+            <button class="modal-close" id="trailer-close-btn" aria-label="Đóng trailer">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="trailer-iframe-wrapper">
+                <iframe id="trailer-video-iframe" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hidden YouTube Audio Player -->
+    <div id="youtube-audio-player" style="position: absolute; width: 0; height: 0; border: 0; pointer-events: none; visibility: hidden; opacity: 0;"></div>
+
+    <footer class="footer">
+        <div class="container footer-container">
+            <p class="footer-copy">&copy; 2026 JAMIE KIRUMATO. [ MECHANICAL CINEMATIC FRAMEWORK ]</p>
+            <p class="footer-credit">Hệ thống phân tích cơ học điện ảnh & âm nhạc. Mọi quyền được bảo lưu.</p>
+        </div>
+    </footer>
+
+    <!-- JS Logic Script -->
+    <script src="app.js"></script>
+</body>
+</html>
